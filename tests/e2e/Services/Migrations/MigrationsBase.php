@@ -2561,6 +2561,20 @@ trait MigrationsBase
      */
     public function testImportVectordbCSV(): void
     {
+        $probe = $this->client->call(Client::METHOD_POST, '/vectorsdb', [
+            'content-type' => 'application/json',
+            'x-appwrite-project' => $this->getProject()['$id'],
+            'x-appwrite-key' => $this->getProject()['apiKey'],
+        ], ['databaseId' => ID::unique(), 'name' => 'probe']);
+        if ($probe['headers']['status-code'] !== 201) {
+            $this->markTestSkipped('VectorsDB backend is not available');
+        }
+        $this->client->call(Client::METHOD_DELETE, '/vectorsdb/' . $probe['body']['$id'], [
+            'content-type' => 'application/json',
+            'x-appwrite-project' => $this->getProject()['$id'],
+            'x-appwrite-key' => $this->getProject()['apiKey'],
+        ]);
+
         $databaseId = null;
         $collectionId = null;
         $bucketId = null;
@@ -2685,6 +2699,20 @@ trait MigrationsBase
     #[Retry(count: 1)]
     public function testExportVectordbCSV(): void
     {
+        $probe = $this->client->call(Client::METHOD_POST, '/vectorsdb', [
+            'content-type' => 'application/json',
+            'x-appwrite-project' => $this->getProject()['$id'],
+            'x-appwrite-key' => $this->getProject()['apiKey'],
+        ], ['databaseId' => ID::unique(), 'name' => 'probe']);
+        if ($probe['headers']['status-code'] !== 201) {
+            $this->markTestSkipped('VectorsDB backend is not available');
+        }
+        $this->client->call(Client::METHOD_DELETE, '/vectorsdb/' . $probe['body']['$id'], [
+            'content-type' => 'application/json',
+            'x-appwrite-project' => $this->getProject()['$id'],
+            'x-appwrite-key' => $this->getProject()['apiKey'],
+        ]);
+
         $databaseId = null;
 
         try {
@@ -4250,6 +4278,20 @@ trait MigrationsBase
 
     public function testCreateVectorsDBJSONExport(): void
     {
+        $probe = $this->client->call(Client::METHOD_POST, '/vectorsdb', [
+            'content-type' => 'application/json',
+            'x-appwrite-project' => $this->getProject()['$id'],
+            'x-appwrite-key' => $this->getProject()['apiKey'],
+        ], ['databaseId' => ID::unique(), 'name' => 'probe']);
+        if ($probe['headers']['status-code'] !== 201) {
+            $this->markTestSkipped('VectorsDB backend is not available');
+        }
+        $this->client->call(Client::METHOD_DELETE, '/vectorsdb/' . $probe['body']['$id'], [
+            'content-type' => 'application/json',
+            'x-appwrite-project' => $this->getProject()['$id'],
+            'x-appwrite-key' => $this->getProject()['apiKey'],
+        ]);
+
         $headers = [
             'content-type' => 'application/json',
             'x-appwrite-project' => $this->getProject()['$id'],
@@ -4314,6 +4356,20 @@ trait MigrationsBase
 
     public function testCreateVectorsDBJSONImport(): void
     {
+        $probe = $this->client->call(Client::METHOD_POST, '/vectorsdb', [
+            'content-type' => 'application/json',
+            'x-appwrite-project' => $this->getProject()['$id'],
+            'x-appwrite-key' => $this->getProject()['apiKey'],
+        ], ['databaseId' => ID::unique(), 'name' => 'probe']);
+        if ($probe['headers']['status-code'] !== 201) {
+            $this->markTestSkipped('VectorsDB backend is not available');
+        }
+        $this->client->call(Client::METHOD_DELETE, '/vectorsdb/' . $probe['body']['$id'], [
+            'content-type' => 'application/json',
+            'x-appwrite-project' => $this->getProject()['$id'],
+            'x-appwrite-key' => $this->getProject()['apiKey'],
+        ]);
+
         $headers = [
             'content-type' => 'application/json',
             'x-appwrite-project' => $this->getProject()['$id'],
@@ -4394,6 +4450,20 @@ trait MigrationsBase
 
     public function testCreateDocumentsDBJSONExport(): void
     {
+        $probe = $this->client->call(Client::METHOD_POST, '/documentsdb', [
+            'content-type' => 'application/json',
+            'x-appwrite-project' => $this->getProject()['$id'],
+            'x-appwrite-key' => $this->getProject()['apiKey'],
+        ], ['databaseId' => ID::unique(), 'name' => 'probe']);
+        if ($probe['headers']['status-code'] !== 201) {
+            $this->markTestSkipped('DocumentsDB backend is not available');
+        }
+        $this->client->call(Client::METHOD_DELETE, '/documentsdb/' . $probe['body']['$id'], [
+            'content-type' => 'application/json',
+            'x-appwrite-project' => $this->getProject()['$id'],
+            'x-appwrite-key' => $this->getProject()['apiKey'],
+        ]);
+
         $headers = [
             'content-type' => 'application/json',
             'x-appwrite-project' => $this->getProject()['$id'],
@@ -4458,6 +4528,20 @@ trait MigrationsBase
 
     public function testCreateDocumentsDBJSONImport(): void
     {
+        $probe = $this->client->call(Client::METHOD_POST, '/documentsdb', [
+            'content-type' => 'application/json',
+            'x-appwrite-project' => $this->getProject()['$id'],
+            'x-appwrite-key' => $this->getProject()['apiKey'],
+        ], ['databaseId' => ID::unique(), 'name' => 'probe']);
+        if ($probe['headers']['status-code'] !== 201) {
+            $this->markTestSkipped('DocumentsDB backend is not available');
+        }
+        $this->client->call(Client::METHOD_DELETE, '/documentsdb/' . $probe['body']['$id'], [
+            'content-type' => 'application/json',
+            'x-appwrite-project' => $this->getProject()['$id'],
+            'x-appwrite-key' => $this->getProject()['apiKey'],
+        ]);
+
         $headers = [
             'content-type' => 'application/json',
             'x-appwrite-project' => $this->getProject()['$id'],
